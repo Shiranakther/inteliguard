@@ -7,7 +7,6 @@ dotenv.config();
 
 const app = express();
 
-
 // Middleware
 app.use(express.json());
 
@@ -19,6 +18,10 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log('MongoDB Connection Error:', err));
+
+app.get('/', (req, res) => {
+  res.send('Server is running 🚀');
+});
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
