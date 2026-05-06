@@ -7,6 +7,11 @@ dotenv.config();
 
 const app = express();
 
+
+app.get('/', (req, res) => {
+  res.json({ message: 'InteliGuard API is running' });
+});
+
 // Middleware
 app.use(express.json());
 
@@ -19,11 +24,9 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log('MongoDB Connection Error:', err));
 
-app.get('/', (req, res) => {
-  res.send('Server is running 🚀');
-});
 
-// Routes
+
+
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/car', require('./routes/carRoutes'));
 app.use('/api/paths', require('./routes/pathRoutes'));
@@ -42,6 +45,10 @@ app.get('/api/dashboard', require('./middleware/auth').protect, (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
