@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://inteliguard-bk.vercel.app/:5000/api';
 
 const getHeaders = (token) => ({
   'Content-Type': 'application/json',
@@ -6,14 +6,14 @@ const getHeaders = (token) => ({
 });
 
 export const authAPI = {
-  login: (credentials) => 
+  login: (credentials) =>
     fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify(credentials)
     }).then(res => res.json()),
 
-  register: (userData) => 
+  register: (userData) =>
     fetch(`${API_BASE_URL}/auth/register`, {
       method: 'POST',
       headers: getHeaders(),
@@ -22,7 +22,7 @@ export const authAPI = {
 };
 
 export const carAPI = {
-  sendCommand: (endpoint, data, token) => 
+  sendCommand: (endpoint, data, token) =>
     fetch(`${API_BASE_URL}/car/${endpoint}`, {
       method: 'POST',
       headers: getHeaders(token),
@@ -36,12 +36,12 @@ export const carAPI = {
 };
 
 export const settingsAPI = {
-  get: (token) => 
+  get: (token) =>
     fetch(`${API_BASE_URL}/settings`, {
       headers: getHeaders(token)
     }).then(res => res.json()),
 
-  update: (settings, token) => 
+  update: (settings, token) =>
     fetch(`${API_BASE_URL}/settings`, {
       method: 'PUT',
       headers: getHeaders(token),
@@ -50,7 +50,7 @@ export const settingsAPI = {
 };
 
 export const pathAPI = {
-  getAll: (token) => 
+  getAll: (token) =>
     fetch(`${API_BASE_URL}/paths`, {
       headers: getHeaders(token)
     }).then(res => res.json()),
