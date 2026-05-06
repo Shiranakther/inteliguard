@@ -1,0 +1,10 @@
+export const DARK = "#0d1b2e";
+export const DARK2 = "#112240";
+export const CARD = "#162c4a";
+export const CARD2 = "#1a3357";
+export const BLUE = "#1a6eff";
+export const GREEN = "#22c55e";
+export const RED = "#ef4444";
+export const WHITE = "#ffffff";
+export const MUTED = "#7a9cc0";
+export const ACCENT = "#2563eb";
